@@ -1,8 +1,3 @@
-"""
-Sistema Experto Difuso para determinar el perfil de un inversor
-Implementación en Python del archivo FCL (Fuzzy Control Language)
-"""
-
 import numpy as np
 from skfuzzy import control as ctrl
 import skfuzzy as fuzz
@@ -15,8 +10,6 @@ class SistemaExpertoDifusoInversorFCL:
     - Nivel de ingresos
     - Conocimiento financiero
     - Tolerancia al riesgo
-
-    Implementación basada en el archivo FCL 'inv.fcl'
     """
 
     def __init__(self):
@@ -24,7 +17,8 @@ class SistemaExpertoDifusoInversorFCL:
         # Definir variables de entrada (universos de discurso)
         self.edad = ctrl.Antecedent(np.arange(20, 101, 1), "edad")
         self.ingresos = ctrl.Antecedent(np.arange(0, 15001, 100), "ingresos")
-        self.conocimiento = ctrl.Antecedent(np.arange(0, 11, 1), "conocimiento")
+        self.conocimiento = ctrl.Antecedent(
+            np.arange(0, 11, 1), "conocimiento")
         self.tolerancia = ctrl.Antecedent(np.arange(0, 11, 1), "tolerancia")
 
         # Definir variables de salida
@@ -33,7 +27,8 @@ class SistemaExpertoDifusoInversorFCL:
         # Por defecto, scikit-fuzzy utiliza este método por ser preciso y consistente
         self.potencial = ctrl.Consequent(np.arange(0, 11, 0.1), "potencial")
         self.riesgo = ctrl.Consequent(np.arange(0, 11, 0.1), "riesgo")
-        self.perfil_inversor = ctrl.Consequent(np.arange(0, 11, 0.1), "perfil_inversor")
+        self.perfil_inversor = ctrl.Consequent(
+            np.arange(0, 11, 0.1), "perfil_inversor")
 
         # Definir las funciones de pertenencia para cada variable
         self.definir_funciones_membresia()
@@ -67,8 +62,10 @@ class SistemaExpertoDifusoInversorFCL:
         )  # Desde 50
 
         # Funciones de membresía para variable INGRESOS (en unidades monetarias)
-        self.ingresos["bajo"] = fuzz.trapmf(self.ingresos.universe, [0, 0, 1000, 2000])
-        self.ingresos["medio"] = fuzz.trimf(self.ingresos.universe, [1500, 3000, 4500])
+        self.ingresos["bajo"] = fuzz.trapmf(
+            self.ingresos.universe, [0, 0, 1000, 2000])
+        self.ingresos["medio"] = fuzz.trimf(
+            self.ingresos.universe, [1500, 3000, 4500])
         self.ingresos["alto"] = fuzz.trapmf(
             self.ingresos.universe, [4000, 5000, 15000, 15000]
         )
@@ -77,20 +74,27 @@ class SistemaExpertoDifusoInversorFCL:
         self.conocimiento["bajo"] = fuzz.trapmf(
             self.conocimiento.universe, [0, 0, 2, 4]
         )
-        self.conocimiento["medio"] = fuzz.trimf(self.conocimiento.universe, [3, 5, 7])
+        self.conocimiento["medio"] = fuzz.trimf(
+            self.conocimiento.universe, [3, 5, 7])
         self.conocimiento["alto"] = fuzz.trapmf(
             self.conocimiento.universe, [6, 8, 10, 10]
         )
 
         # Funciones de membresía para variable TOLERANCIA AL RIESGO (escala 0-10)
-        self.tolerancia["bajo"] = fuzz.trapmf(self.tolerancia.universe, [0, 0, 2, 4])
-        self.tolerancia["medio"] = fuzz.trimf(self.tolerancia.universe, [3, 5, 7])
-        self.tolerancia["alto"] = fuzz.trapmf(self.tolerancia.universe, [6, 8, 10, 10])
+        self.tolerancia["bajo"] = fuzz.trapmf(
+            self.tolerancia.universe, [0, 0, 2, 4])
+        self.tolerancia["medio"] = fuzz.trimf(
+            self.tolerancia.universe, [3, 5, 7])
+        self.tolerancia["alto"] = fuzz.trapmf(
+            self.tolerancia.universe, [6, 8, 10, 10])
 
         # Funciones de membresía para variable POTENCIAL DE INVERSIÓN (escala 0-10)
-        self.potencial["bajo"] = fuzz.trapmf(self.potencial.universe, [0, 0, 2, 4])
-        self.potencial["medio"] = fuzz.trimf(self.potencial.universe, [3, 5, 7])
-        self.potencial["alto"] = fuzz.trapmf(self.potencial.universe, [6, 8, 10, 10])
+        self.potencial["bajo"] = fuzz.trapmf(
+            self.potencial.universe, [0, 0, 2, 4])
+        self.potencial["medio"] = fuzz.trimf(
+            self.potencial.universe, [3, 5, 7])
+        self.potencial["alto"] = fuzz.trapmf(
+            self.potencial.universe, [6, 8, 10, 10])
 
         # Funciones de membresía para variable RIESGO (escala 0-10)
         self.riesgo["bajo"] = fuzz.trapmf(self.riesgo.universe, [0, 0, 2, 4])
@@ -324,7 +328,8 @@ class SistemaExpertoDifusoInversorFCL:
         if not (1 <= ingresos <= 15000):
             raise ValueError("Los ingresos deben estar entre 1 y 15,000")
         if not (1 <= conocimiento <= 10):
-            raise ValueError("El conocimiento financiero debe estar entre 1 y 10")
+            raise ValueError(
+                "El conocimiento financiero debe estar entre 1 y 10")
         if not (1 <= tolerancia <= 10):
             raise ValueError("La tolerancia al riesgo debe estar entre 1 y 10")
 

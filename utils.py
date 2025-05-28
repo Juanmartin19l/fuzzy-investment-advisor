@@ -1,7 +1,3 @@
-"""
-Utilidades para el Sistema Experto Difuso de perfiles de inversión
-"""
-
 import os
 
 
