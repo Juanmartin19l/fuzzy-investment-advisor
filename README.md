@@ -8,12 +8,28 @@ El sistema utiliza principios de lógica difusa para modelar el razonamiento hum
 
 ## Estructura del Proyecto
 
-El proyecto ha sido organizado de forma modular para facilitar su mantenimiento y comprensión:
+El proyecto ha sido organizado de forma modular en una estructura limpia y mantenible:
 
-- `main.py`: Punto de entrada principal del sistema. Contiene la función `ejecutar_sistema()` que gestiona la interacción con el usuario mediante una interfaz de consola.
-- `sistema_experto.py`: Contiene la implementación principal del sistema experto difuso (`SistemaExpertoDifusoInversorFCL`) con todas las variables, funciones de membresía y reglas de inferencia.
-- `visualizacion.py`: Módulo para la visualización de funciones de membresía y resultados de inferencia mediante gráficos.
-- `utils.py`: Funciones de utilidad generales para el sistema.
+```
+fuzzy-investment-advisor/
+├── .devcontainer/          # Configuración del contenedor de desarrollo
+├── main.py                 # Punto de entrada principal del sistema
+├── requirements.txt        # Dependencias de Python
+├── README.md              # Este archivo
+├── Paper.pdf              # Documentación técnica
+└── src/                   # Módulos principales del sistema
+    ├── __init__.py        # Configuración del paquete Python
+    ├── sistema_experto.py # Sistema experto difuso principal
+    ├── utils.py           # Funciones de utilidad
+    └── visualizacion.py   # Módulos de visualización
+```
+
+### Descripción de módulos:
+
+- **`main.py`**: Punto de entrada principal del sistema. Contiene la función `ejecutar_sistema()` que gestiona la interacción con el usuario mediante una interfaz de consola.
+- **`src/sistema_experto.py`**: Contiene la implementación principal del sistema experto difuso (`SistemaExpertoDifusoInversorFCL`) con todas las variables, funciones de membresía y reglas de inferencia.
+- **`src/visualizacion.py`**: Módulo para la visualización de funciones de membresía y resultados de inferencia mediante gráficos.
+- **`src/utils.py`**: Funciones de utilidad generales para el sistema.
 
 ## Variables de entrada
 
@@ -81,48 +97,107 @@ El sistema implementa 27 reglas de inferencia distribuidas en tres bloques:
 
 ## Requisitos
 
-Para ejecutar el sistema se necesita:
+El proyecto está configurado para funcionar en un entorno de desarrollo containerizado usando Docker y VS Code Dev Containers, lo que garantiza un entorno consistente y reproducible.
 
+### Opción 1: Usando Dev Container (Recomendado)
+
+El proyecto incluye una configuración completa de Dev Container que proporciona:
+
+- **Python 3.12** preinstalado y configurado
+- **Todas las dependencias** instaladas automáticamente
+- **Entorno Linux** (Debian GNU/Linux 11 bullseye)
+- **Herramientas de desarrollo** preconfiguradas (git, npm, eslint)
+
+**Prerequisitos:**
+- Docker Desktop instalado
+- Visual Studio Code con la extensión "Dev Containers"
+
+**Pasos:**
+1. Clone el repositorio
+2. Abra el proyecto en VS Code
+3. Cuando aparezca la notificación, seleccione "Reopen in Container"
+4. El contenedor se construirá automáticamente con todas las dependencias
+
+### Opción 2: Instalación Local
+
+Si prefiere trabajar localmente sin Docker:
+
+**Prerequisitos:**
 - Python 3.10 o superior
+- pip (gestor de paquetes de Python)
+
+**Dependencias requeridas:**
 - NumPy
 - scikit-fuzzy
 - Matplotlib
 
-## Instalación
+## Instalación y Configuración
 
-1. **Clone el repositorio o descargue los archivos del proyecto**
+### Usando Dev Container (Recomendado)
 
-2. **Cree y active un entorno virtual (recomendado)**:
+1. **Prerequisitos**:
+   - Docker Desktop instalado y ejecutándose
+   - VS Code con la extensión "Dev Containers"
 
+2. **Configuración**:
+   ```bash
+   # Clonar el repositorio
+   git clone https://github.com/Juanmartin19l/fuzzy-investment-advisor.git
+   cd fuzzy-investment-advisor
+   
+   # Abrir en VS Code
+   code .
+   ```
+
+3. **Inicialización automática**:
+   - VS Code detectará la configuración de Dev Container
+   - Seleccione "Reopen in Container" cuando aparezca la notificación
+   - El contenedor se construirá automáticamente con todas las dependencias
+
+### Instalación Local (Alternativa)
+
+1. **Clone el repositorio**:
+   ```bash
+   git clone https://github.com/Juanmartin19l/fuzzy-investment-advisor.git
+   cd fuzzy-investment-advisor
+   ```
+
+2. **Cree y active un entorno virtual**:
    ```bash
    # Crear el entorno virtual
    python -m venv .venv
-   ```
-
-   ```bash
-   # Activar el entorno virtual en macOS/Linux
+   
+   # Activar en macOS/Linux
    source .venv/bin/activate
-   ```
-
-   ```bash
-   # Activar el entorno virtual en Windows
+   
+   # Activar en Windows
    .\.venv\Scripts\activate
-
    ```
 
 3. **Instale las dependencias**:
-
    ```bash
    pip install -r requirements.txt
    ```
 
 ## Ejecución y Uso
 
-Para ejecutar el sistema, utilice:
+### En Dev Container
+
+Una vez que el contenedor esté ejecutándose, simplemente use:
 
 ```bash
 python main.py
 ```
+
+### En Instalación Local
+
+Para ejecutar el sistema, asegúrese de que el entorno virtual esté activado y use:
+
+```bash
+python main.py
+```
+
+### Interfaz de Usuario
 
 El programa solicitará los siguientes datos:
 
@@ -141,17 +216,19 @@ Después de procesar los datos, el sistema mostrará:
 
 ## Características principales
 
-- Evaluación de perfiles de inversión basada en 4 variables de entrada
-- Categorización en 3 perfiles de inversor: Conservador, Moderado y Agresivo
-- Visualización de las funciones de membresía y resultados mediante gráficos
-- Interfaz de usuario por consola, interactiva y amigable
-- Sistema de respaldo basado en reglas heurísticas simplificadas
+- **Entorno containerizado**: Configuración completa de Dev Container para desarrollo reproducible
+- **Evaluación de perfiles de inversión** basada en 4 variables de entrada
+- **Categorización en 3 perfiles de inversor**: Conservador, Moderado y Agresivo
+- **Visualización** de las funciones de membresía y resultados mediante gráficos
+- **Interfaz de usuario por consola**, interactiva y amigable
+- **Sistema de respaldo** basado en reglas heurísticas simplificadas
+- **Arquitectura modular** con separación clara de responsabilidades
 
 ## Implementación técnica
 
-El código está estructurado en clases modulares:
+El código está estructurado en una arquitectura modular dentro del paquete `src/`:
 
-### Clase SistemaExpertoDifusoInversorFCL
+### Clase SistemaExpertoDifusoInversorFCL (`src/sistema_experto.py`)
 
 - Definición de variables lingüísticas (Antecedentes y Consecuentes)
 - Configuración de funciones de membresía triangulares (trimf) y trapezoidales (trapmf)
@@ -159,11 +236,22 @@ El código está estructurado en clases modulares:
 - Creación del sistema de control difuso y simulación
 - Método `evaluar()` para procesar entradas y obtener el perfil resultante
 
-### Clase VisualizadorSistemaExperto
+### Clase VisualizadorSistemaExperto (`src/visualizacion.py`)
 
 - Visualización de todas las funciones de membresía del sistema
 - Representación gráfica del proceso de defuzzificación
 - Visualización de resultados con indicadores para los valores obtenidos
+
+### Módulo de utilidades (`src/utils.py`)
+
+- Funciones auxiliares para la interfaz de usuario
+- Utilidades para limpieza de pantalla y formateo
+
+### Punto de entrada (`main.py`)
+
+- Gestión de la interfaz de usuario
+- Coordinación entre los diferentes módulos
+- Manejo de excepciones y validación de entrada
 
 ### Elementos clave del código
 
@@ -213,8 +301,7 @@ El módulo de visualización (`visualizacion.py`) proporciona dos tipos principa
 3. **Perfil Agresivo**
    - Jóvenes con altos ingresos y alta tolerancia al riesgo
    - Personas con alto potencial de inversión y conocimiento financiero
-   - Personas con potencial medio pero alto nivel de riesgo
-   - Enfocado en maximizar la rentabilidad aceptando mayor volatilidad
+   - Personas con potencial medio pero alto nivel de riesgo   - Enfocado en maximizar la rentabilidad aceptando mayor volatilidad
 
 ## Referencias
 
