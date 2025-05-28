@@ -107,6 +107,8 @@ El proyecto incluye una configuración completa de Dev Container que proporciona
 - **Todas las dependencias** instaladas automáticamente
 - **Entorno Linux** (Debian GNU/Linux 11 bullseye)
 - **Herramientas de desarrollo** preconfiguradas (git, npm, eslint)
+- **noVNC** para visualización de gráficos matplotlib en el navegador (puerto 6080)
+- **Escritorio virtual** para aplicaciones gráficas
 
 **Prerequisitos:**
 - Docker Desktop instalado
@@ -183,11 +185,20 @@ Si prefiere trabajar localmente sin Docker:
 
 ### En Dev Container
 
-Una vez que el contenedor esté ejecutándose, simplemente use:
+Una vez que el contenedor esté ejecutándose:
 
-```bash
-python main.py
-```
+1. **Ejecute el sistema**:
+   ```bash
+   python main.py
+   ```
+
+2. **Para visualizar gráficos** (cuando el programa se lo solicite):
+   - Abra su navegador web
+   - Navegue a: **http://localhost:6080/**
+   - Esto abrirá el escritorio virtual noVNC donde podrá ver las visualizaciones de matplotlib
+   - Las gráficas aparecerán automáticamente cuando seleccione la opción de visualización en el programa
+
+> **📝 Nota importante**: En el entorno Dev Container, las visualizaciones de matplotlib se muestran a través de noVNC en el puerto 6080, no directamente en VS Code.
 
 ### En Instalación Local
 
@@ -213,6 +224,29 @@ Después de procesar los datos, el sistema mostrará:
 - El potencial de inversión calculado (0-10)
 - El nivel de riesgo calculado (0-10)
 - Opción para visualizar gráficamente las funciones de membresía y resultados de la inferencia
+
+## Visualización de Gráficos en Dev Container
+
+Cuando trabaje en el entorno Dev Container, la visualización de gráficos de matplotlib requiere pasos adicionales:
+
+### Acceso a noVNC
+
+1. **Ejecute el sistema** normalmente con `python main.py`
+2. **Cuando el programa pregunte si desea ver las gráficas**, responda "sí"
+3. **Abra su navegador web** y navegue a: 
+   ```
+   http://localhost:6080/
+   ```
+4. **Se abrirá un escritorio virtual** donde aparecerán las ventanas de matplotlib
+5. **Interactúe con las gráficas** normalmente (zoom, cerrar ventanas, etc.)
+
+### Notas importantes sobre noVNC:
+
+- ✅ **Funciona en cualquier navegador** moderno
+- ✅ **No requiere instalación** de software adicional
+- ✅ **Resolución ajustable** según su pantalla
+- ⚠️ **Las ventanas aparecen en el escritorio virtual**, no en VS Code directamente
+- ⚠️ **Cierre las ventanas de gráficos** manualmente para continuar con el programa
 
 ## Características principales
 
