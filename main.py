@@ -1,7 +1,7 @@
 import traceback
-from utils import clear_screen
-from sistema_experto import SistemaExpertoDifusoInversorFCL
-from visualizacion import VisualizadorSistemaExperto
+from src.utils import clear_screen
+from src.sistema_experto import SistemaExpertoDifusoInversorFCL
+from src.visualizacion import VisualizadorSistemaExperto
 
 
 def ejecutar_sistema():
