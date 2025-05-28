@@ -1,22 +1,10 @@
-"""
-Sistema Experto Difuso para determinar el perfil de un inversor
-Punto de entrada principal del programa
-"""
-
 import traceback
-from utils import clear_screen
-from sistema_experto import SistemaExpertoDifusoInversorFCL
-from visualizacion import VisualizadorSistemaExperto
+from src.utils import clear_screen
+from src.sistema_experto import SistemaExpertoDifusoInversorFCL
+from src.visualizacion import VisualizadorSistemaExperto
 
 
 def ejecutar_sistema():
-    """
-    Función principal para ejecutar el sistema experto difuso.
-
-    Esta función maneja la interacción con el usuario, capturando los datos de entrada,
-    validándolos, procesándolos a través del sistema experto difuso y presentando
-    los resultados al usuario de manera clara y comprensible.
-    """
     try:
         # Inicializar el sistema experto de inferencia difusa
         sed = SistemaExpertoDifusoInversorFCL()
@@ -49,7 +37,8 @@ def ejecutar_sistema():
                         if 20 <= edad <= 100:
                             break
                         else:
-                            print("⚠️  Error: La edad debe estar entre 20 y 100 años.")
+                            print(
+                                "⚠️  Error: La edad debe estar entre 20 y 100 años.")
                     except ValueError:
                         print("Error: Por favor, ingrese un número entero válido.")
 
@@ -59,7 +48,8 @@ def ejecutar_sistema():
                 # Validación de ingresos con interfaz mejorada
                 while True:
                     try:
-                        ingresos_str = input("➤ Ingresos mensuales (1-15,000): ")
+                        ingresos_str = input(
+                            "➤ Ingresos mensuales (1-15,000): ")
                         ingresos = int(ingresos_str)
                         if 1 <= ingresos <= 15000:
                             break
@@ -68,7 +58,8 @@ def ejecutar_sistema():
                                 "⚠️  Error: Los ingresos deben estar entre 1 y 15,000."
                             )
                     except ValueError:
-                        print("⚠️  Error: Por favor, ingrese un número entero válido.")
+                        print(
+                            "⚠️  Error: Por favor, ingrese un número entero válido.")
 
                 # Validación de conocimiento financiero con interfaz mejorada
                 while True:
@@ -99,7 +90,8 @@ def ejecutar_sistema():
                         print(
                             "  8-10: Alta tolerancia (asume riesgos por mayor rentabilidad)"
                         )
-                        tolerancia_str = input("➤ Tolerancia al riesgo (1-10): ")
+                        tolerancia_str = input(
+                            "➤ Tolerancia al riesgo (1-10): ")
                         tolerancia = float(tolerancia_str)
                         if 1 <= tolerancia <= 10:
                             break
@@ -112,7 +104,8 @@ def ejecutar_sistema():
 
                 # Evaluar perfil mediante el sistema de inferencia difusa
                 print("\n⏳ Procesando mediante inferencia difusa...")
-                resultado = sed.evaluar(edad, ingresos, conocimiento, tolerancia)
+                resultado = sed.evaluar(
+                    edad, ingresos, conocimiento, tolerancia)
 
                 # Presentación visual de resultados
                 print("\n" + "┌" + "─" * 68 + "┐")
@@ -127,15 +120,18 @@ def ejecutar_sistema():
                 print("\n🔹 PARÁMETROS DE ENTRADA:")
                 print("  • Edad: " + str(edad) + " años")
                 print("  • Ingresos mensuales: $" + str(ingresos))
-                print("  • Conocimiento financiero: " + str(conocimiento) + "/10")
+                print("  • Conocimiento financiero: " +
+                      str(conocimiento) + "/10")
                 print(
                     "  • Tolerancia al riesgo: " + str(tolerancia) + "/10"
                 )  # Sección de resultados de la inferencia
                 print("\n🔹 RESULTADOS DE LA INFERENCIA DIFUSA:")
                 print(
-                    "  • Potencial de inversión: " + f"{resultado['potencial']:.2f}/10"
+                    "  • Potencial de inversión: " +
+                    f"{resultado['potencial']:.2f}/10"
                 )
-                print("  • Nivel de riesgo: " + f"{resultado['riesgo']:.2f}/10")
+                print("  • Nivel de riesgo: " +
+                      f"{resultado['riesgo']:.2f}/10")
 
                 # Sección de perfil resultante
                 print("\n🔹 PERFIL DE INVERSIÓN RECOMENDADO:")

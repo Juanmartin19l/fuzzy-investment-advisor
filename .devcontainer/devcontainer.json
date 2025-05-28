@@ -1,0 +1,14 @@
+{
+  "name": "Python 3",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+  "postCreateCommand": "pip3 install --user -r requirements.txt",
+  "features": {
+    "ghcr.io/bascodes/devcontainer-features/desktop-init": {}
+  },
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {
+      "label": "Application"
+    }
+  }
+}
