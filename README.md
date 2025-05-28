@@ -2,6 +2,8 @@
 
 Este proyecto implementa un Sistema Experto basado en Lógica Difusa (Fuzzy Logic) que determina el perfil de un inversor a partir de características personales como edad, nivel de ingresos, conocimiento financiero y tolerancia al riesgo. El sistema está implementado en Python utilizando la biblioteca scikit-fuzzy.
 
+**Desarrollado por:** Juan Martín, Juan Lucas Lobeta y Santiago Majul
+
 ## Descripción
 
 El sistema utiliza principios de lógica difusa para modelar el razonamiento humano en la clasificación de inversores. A diferencia de la lógica binaria tradicional (verdadero/falso), la lógica difusa permite el manejo de conceptos imprecisos como "joven", "ingresos altos" o "baja tolerancia al riesgo" mediante grados de pertenencia a conjuntos difusos.
